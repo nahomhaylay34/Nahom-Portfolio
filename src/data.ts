@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
     description: "Developed a web-based daycare management system with dedicated dashboards for administrators, staff, and parents. Designed responsive interfaces to streamline daily management activities and user communication.",
     image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80",
     tags: ["React", "Vite", "Node.js", "MySQL"],
-    liveDemoUrl: "https://github.com/nahomhaylay34",
+    liveDemoUrl: "https://aku-day-care.vercel.app",
     githubUrl: "https://github.com/nahomhaylay34"
   }
 ];
