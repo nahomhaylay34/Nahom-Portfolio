@@ -4,11 +4,6 @@ import { projectsData } from "../data";
 import { motion } from "motion/react";
 
 export default function ProjectsSection() {
-  const handleAlert = (e: React.MouseEvent, label: string) => {
-    e.preventDefault();
-    alert(`Protocol triggered:\nInitializing secure proxy tunnel for ${label} sandbox simulation.`);
-  };
-
   return (
     <section id="projects" className="px-6 md:px-16 py-24 max-w-[1280px] mx-auto z-10">
       {/* Header */}
@@ -73,55 +68,44 @@ export default function ProjectsSection() {
 
               {/* Dynamic Action Buttons inside the Project */}
               <div className="mt-auto flex flex-wrap gap-4 font-mono text-[10px]">
-                {/* Custom Action Label/Trigger depending on Project ID */}
-                {project.id === "spark-security" && (
-                  <button
-                    onClick={(e) => handleAlert(e, "Spark Security LIVE DEMO")}
+                {/* Live Demo standard action */}
+                {project.liveDemoUrl && (
+                  <a
+                    href={project.liveDemoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-primary border border-primary/25 bg-primary/5 hover:bg-primary/10 px-4 py-2 rounded-lg transition-all hover:scale-[1.03]"
                   >
                     <Rocket className="w-3.5 h-3.5" />
                     <span>LIVE DEMO</span>
-                  </button>
+                  </a>
                 )}
 
-                {project.id === "crime-management" && (
-                  <button
-                    onClick={(e) => handleAlert(e, "Crime Management CASE STUDY")}
+                {/* Case Study standard action */}
+                {project.caseStudyUrl && (
+                  <a
+                    href={project.caseStudyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-primary border border-primary/25 bg-primary/5 hover:bg-primary/10 px-4 py-2 rounded-lg transition-all hover:scale-[1.03]"
                   >
                     <FileText className="w-3.5 h-3.5" />
                     <span>CASE STUDY</span>
-                  </button>
-                )}
-
-                {project.id === "coin-platform" && (
-                  <button
-                    onClick={(e) => handleAlert(e, "Coin Platform CRYPTO PAYMENTS API")}
-                    className="flex items-center gap-1.5 text-primary border border-primary/25 bg-primary/5 hover:bg-primary/10 px-4 py-2 rounded-lg transition-all hover:scale-[1.03]"
-                  >
-                    <CreditCard className="w-3.5 h-3.5" />
-                    <span>PAYMENTS API</span>
-                  </button>
-                )}
-
-                {project.id === "task-app" && (
-                  <button
-                    onClick={(e) => handleAlert(e, "Task Mobile App installation")}
-                    className="flex items-center gap-1.5 text-primary border border-primary/25 bg-primary/5 hover:bg-primary/10 px-4 py-2 rounded-lg transition-all hover:scale-[1.03]"
-                  >
-                    <Smartphone className="w-3.5 h-3.5" />
-                    <span>INSTALL</span>
-                  </button>
+                  </a>
                 )}
 
                 {/* Github standard action */}
-                <button
-                  onClick={(e) => handleAlert(e, `${project.title} source code`)}
-                  className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 px-3.5 py-2 rounded-lg transition-colors"
-                >
-                  <Code className="w-3.5 h-3.5" />
-                  <span>GITHUB</span>
-                </button>
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 px-3.5 py-2 rounded-lg transition-colors"
+                  >
+                    <Code className="w-3.5 h-3.5" />
+                    <span>GITHUB</span>
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

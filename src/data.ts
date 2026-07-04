@@ -7,8 +7,8 @@ export const projectsData: Project[] = [
     description: "Designed and developed a modern corporate website for Spark Security from concept to deployment. Built interactive 3D experiences using Three.js to create an engaging and visually dynamic user experience. Implemented responsive layouts, animated interface components, and interactive content optimized for desktop and mobile devices.",
     image: "/Spark.jpg",
     tags: ["React", "Vite", "Tailwind CSS", "Three.js", "Vercel"],
-    liveDemoUrl: "https://github.com/nahomhaylay34",
-    githubUrl: "https://github.com/nahomhaylay34"
+    liveDemoUrl: "https://sparksec-web.vercel.app/",
+    githubUrl: "https://github.com/nahomhaylay34/sparksec-web"
   },
   {
     id: "crime-management",
@@ -16,8 +16,7 @@ export const projectsData: Project[] = [
     description: "Developed a role-based crime management platform (Graduation Project) with dedicated dashboards for administrators, police officers, and citizens. Implemented secure authentication and authorization using JWT. Built RESTful backend services connected to a MySQL database for efficient case management and reporting. Designed responsive interfaces to improve accessibility and user experience across multiple roles.",
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
     tags: ["React", "Node.js", "MySQL", "JWT Authentication"],
-    caseStudyUrl: "https://github.com/nahomhaylay34",
-    githubUrl: "https://github.com/nahomhaylay34"
+    githubUrl: "https://github.com/nahomhaylay34/Ethiopia-Police-Minister"
   },
   {
     id: "task-management",
@@ -25,8 +24,7 @@ export const projectsData: Project[] = [
     description: "Developed a cross-platform mobile application to help students organize academic tasks and schedules. Built intuitive mobile interfaces focused on usability and productivity. Integrated backend services for user data management and task synchronization.",
     image: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=800&q=80",
     tags: ["React Native", "Expo", "Node.js"],
-    liveDemoUrl: "https://github.com/nahomhaylay34",
-    githubUrl: "https://github.com/nahomhaylay34"
+    githubUrl: "https://github.com/nahomhaylay34/Hope-apllication"
   },
   {
     id: "daycare-management",
