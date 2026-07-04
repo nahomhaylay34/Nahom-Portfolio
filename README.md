@@ -1,20 +1,50 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Nahom Tsadik - Personal Portfolio
 
-# Run and deploy your AI Studio app
+A modern, high-performance personal portfolio website built to showcase engineering precision, full-stack development skills, and professional achievements. 
 
-This contains everything you need to run your app locally.
+## 🚀 Features
 
-View your app in AI Studio: https://ai.studio/apps/9721822c-dfa2-428a-8d96-e83f07a5b04e
+- **Interactive 3D Elements:** Utilizes `Three.js` for custom 3D models and kinetic card tilt effects.
+- **Dynamic Animations:** Smooth scroll transitions and micro-interactions powered by `framer-motion`.
+- **Responsive Design:** Fully responsive layout built with Tailwind CSS, ensuring a seamless experience across all devices.
+- **Developer Terminal UI:** A sleek, interactive terminal component that showcases technical skills in a familiar developer environment.
+- **Modular Architecture:** Clean React component structure for easy maintenance and scalability.
 
-## Run Locally
+## 🛠️ Tech Stack
 
-**Prerequisites:**  Node.js
+- **Framework:** React 19 + Vite
+- **Styling:** Tailwind CSS 4
+- **3D Graphics:** Three.js
+- **Animations:** Motion (Framer Motion)
+- **Icons:** Lucide React
+- **Language:** TypeScript
 
+## 💻 Running Locally
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables:**
+   Create a `.env.local` file in the root directory and add your keys:
+   ```env
+   GEMINI_API_KEY="your_api_key_here"
+   APP_URL="http://localhost:3000"
+   ```
+
+3. **Start Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:3000`.
+
+## 📁 Project Structure
+
+- `src/components/` - Contains all modular UI sections (Hero, Projects, Contact, etc.)
+- `src/data.ts` - Centralized data file containing project details, certifications, and contact info.
+- `public/` - Static assets including images and 3D models.
+
+---
+*Designed and built by Nahom Tsadik.*

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { Upload, AlertCircle, RefreshCw, Eye } from "lucide-react";
 
 export default function GraduationModel() {
@@ -98,20 +99,25 @@ export default function GraduationModel() {
     rendererRef.current = renderer;
 
     // 4. Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    // Increased lighting so the 3D model is clearly visible
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+    hemiLight.position.set(0, 20, 0);
+    scene.add(hemiLight);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
     dirLight.position.set(5, 10, 7);
     dirLight.castShadow = true;
     scene.add(dirLight);
 
     // Dynamic Electric Blue & Soft Violet spotlights for high-tech HUD look
-    const blueLight = new THREE.PointLight(0xadc6ff, 3, 10);
+    const blueLight = new THREE.PointLight(0xadc6ff, 4, 10);
     blueLight.position.set(-3, 2, 2);
     scene.add(blueLight);
 
-    const violetLight = new THREE.PointLight(0xd0bcff, 3, 10);
+    const violetLight = new THREE.PointLight(0xd0bcff, 4, 10);
     violetLight.position.set(3, -2, 2);
     scene.add(violetLight);
 
@@ -235,7 +241,7 @@ export default function GraduationModel() {
     diplomaGroup.position.set(0, 0.3, 0);
     fallbackGroup.add(diplomaGroup);
 
-    // Interactive controls via mouse move
+    // Interactive cursor following state
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -251,6 +257,13 @@ export default function GraduationModel() {
 
     const containerElement = containerRef.current;
     containerElement?.addEventListener("mousemove", handleMouseMove);
+
+    // Add OrbitControls for user interaction (drag to rotate)
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = true;
+    controls.enablePan = false;
 
     // Animation Loop
     let animationFrameId: number;
@@ -269,23 +282,18 @@ export default function GraduationModel() {
         particlesRef.current.rotation.x = elapsedTime * 0.04;
       }
 
-      // Update visible states dynamically without resetting the canvas
+      // Ensure OrbitControls dampening works
+      controls.update();
+
       if (fallbackGroupRef.current) {
         fallbackGroupRef.current.visible = isUsingFallbackRef.current;
-        if (isUsingFallbackRef.current) {
-          fallbackGroupRef.current.rotation.y = elapsedTime * 0.3 + targetX * 0.8;
-          fallbackGroupRef.current.rotation.x = targetY * 0.5;
-          fallbackGroupRef.current.position.y = Math.sin(elapsedTime * 1.5) * 0.1;
-        }
       }
 
       if (currentModelRef.current) {
         currentModelRef.current.visible = !isUsingFallbackRef.current;
-        if (!isUsingFallbackRef.current) {
-          currentModelRef.current.rotation.y = elapsedTime * 0.25 + targetX * 0.8;
-          currentModelRef.current.rotation.x = targetY * 0.5;
-          currentModelRef.current.position.y = Math.sin(elapsedTime * 1.5) * 0.08;
-        }
+        // Apply cursor-following subtle rotation (while still allowing OrbitControls for camera)
+        currentModelRef.current.rotation.y = targetX * 0.6;
+        currentModelRef.current.rotation.x = targetY * 0.4;
       }
 
       renderer.render(scene, camera);
@@ -304,10 +312,14 @@ export default function GraduationModel() {
 
     window.addEventListener("resize", handleResize);
 
+    // Automatically trigger loading of the custom design.glb
+    setModelUrl("/design.glb");
+
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       containerElement?.removeEventListener("mousemove", handleMouseMove);
+      controls.dispose();
       
       // Clean up Three.js objects
       particleGeo.dispose();
@@ -353,7 +365,7 @@ export default function GraduationModel() {
 
         // Center position
         model.position.x = -center.x;
-        model.position.y = -center.y + 0.5;
+        model.position.y = -center.y; // Centered exactly based on bounding box
         model.position.z = -center.z;
 
         // Scale fit
