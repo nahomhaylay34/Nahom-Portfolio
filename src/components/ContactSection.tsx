@@ -98,7 +98,7 @@ export default function ContactSection() {
                 handleAction(e, item);
               }
             }}
-            className="flip-card h-64 w-full sm:w-[320px] lg:w-[340px] group cursor-pointer"
+            className="flip-card h-64 w-full sm:w-[250px] group cursor-pointer"
           >
             <div className="flip-card-inner relative w-full h-full text-center">
               
@@ -123,27 +123,42 @@ export default function ContactSection() {
                   </p>
                 </div>
 
-                <button
-                  onClick={(e) => handleAction(e, item)}
-                  className={`w-full py-2 bg-primary/15 border border-primary/30 hover:bg-primary/25 rounded-lg text-xs font-mono font-bold text-primary transition-all flex items-center justify-center gap-1.5 hover:scale-[1.03] ${
-                    copiedId === item.id ? "bg-green-500/20 border-green-500/40 text-green-400" : ""
-                  }`}
-                >
-                  {copiedId === item.id ? (
-                    <>
-                      <Check className="w-3.5 h-3.5" />
-                      <span>Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      {item.actionLabel === "Copy" && <Copy className="w-3.5 h-3.5" />}
-                      {item.actionLabel === "Download" && <Download className="w-3.5 h-3.5" />}
-                      {item.actionLabel === "View Repos" && <Github className="w-3.5 h-3.5" />}
-                      {item.actionLabel === "Connect" && <ExternalLink className="w-3.5 h-3.5" />}
-                      <span>{item.actionLabel}</span>
-                    </>
+                <div className="flex gap-2 w-full">
+                  <button
+                    onClick={(e) => handleAction(e, item)}
+                    className={`w-full py-2 bg-primary/15 border border-primary/30 hover:bg-primary/25 rounded-lg text-xs font-mono font-bold text-primary transition-all flex items-center justify-center gap-1.5 hover:scale-[1.03] ${
+                      copiedId === item.id ? "bg-green-500/20 border-green-500/40 text-green-400" : ""
+                    }`}
+                  >
+                    {copiedId === item.id ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        {item.actionLabel === "Copy" && <Copy className="w-3.5 h-3.5" />}
+                        {item.actionLabel === "Download" && <Download className="w-3.5 h-3.5" />}
+                        {item.actionLabel === "View Repos" && <Github className="w-3.5 h-3.5" />}
+                        {item.actionLabel === "Connect" && <ExternalLink className="w-3.5 h-3.5" />}
+                        {item.actionLabel === "View" && <ExternalLink className="w-3.5 h-3.5" />}
+                        <span>{item.actionLabel}</span>
+                      </>
+                    )}
+                  </button>
+                  {item.actionLabel === "Copy" && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-full py-2 bg-primary/15 border border-primary/30 hover:bg-primary/25 rounded-lg text-xs font-mono font-bold text-primary transition-all flex items-center justify-center gap-1.5 hover:scale-[1.03]"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Open</span>
+                    </a>
                   )}
-                </button>
+                </div>
               </div>
 
             </div>

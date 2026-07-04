@@ -8,7 +8,7 @@ import GraduationSection from "./components/GraduationSection";
 import FutureGoalsSection from "./components/FutureGoalsSection";
 import ContactSection from "./components/ContactSection";
 import DeveloperTerminal from "./components/DeveloperTerminal";
-import { Cpu, Terminal, ArrowUp, RefreshCw } from "lucide-react";
+import { Cpu, Terminal, ArrowUp, RefreshCw, Send, MessageCircle, Instagram } from "lucide-react";
 
 export default function App() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -114,9 +114,19 @@ export default function App() {
             <span>SYSTEM_LEDGER_LED : Nahom Haylay Tsadik</span>
           </div>
           
-          <div className="flex items-center gap-4">
-            <span>Uptime: 24/7 ACTIVE</span>
-            <span className="text-primary/70">● SECURE SHELL v1.0</span>
+          <div className="flex items-center gap-6">
+            <a href="https://t.me/nahi9305" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <Send className="w-4 h-4" />
+              <span>@nahi9305</span>
+            </a>
+            <a href="https://instagram.com/nahi199305" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <Instagram className="w-4 h-4" />
+              <span>nahi199305</span>
+            </a>
+            <a href="https://wa.me/251954883155" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp</span>
+            </a>
           </div>
 
           <div>

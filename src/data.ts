@@ -99,7 +99,7 @@ export const contactData: ContactItem[] = [
     icon: "mail",
     badge: "DIRECT_COMM",
     actionLabel: "Copy",
-    link: "mailto:nahomhaylay34@gmail.com"
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=nahomhaylay34@gmail.com"
   },
   {
     id: "github",
@@ -110,15 +110,7 @@ export const contactData: ContactItem[] = [
     actionLabel: "View Repos",
     link: "https://github.com/nahomhaylay34"
   },
-  {
-    id: "location",
-    label: "Location",
-    value: "Addis Ababa, Ethiopia",
-    icon: "share_reviews",
-    badge: "PHYSICAL_NODE",
-    actionLabel: "View",
-    link: "https://maps.google.com/?q=Addis+Ababa"
-  },
+
   {
     id: "phone",
     label: "Phone",
