@@ -263,7 +263,7 @@ const TechCard: React.FC<{ card: TechCardData; idx: number }> = ({ card, idx }) 
 
 export default function TechStackSection() {
   return (
-    <section id="skills" className="px-6 md:px-16 py-24 max-w-[1520px] mx-auto z-10">
+    <section id="skills" className="px-6 md:px-16 py-24 w-full max-w-none mx-auto z-10">
       {/* Header */}
       <div className="mb-16 select-none">
         <span className="text-primary font-mono text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold">// TECH_STACK</span>
@@ -275,17 +275,14 @@ export default function TechStackSection() {
         </p>
       </div>
 
-      {/* Row 1: 3 cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 -mx-6 md:-mx-16">
-        {techCards.slice(0, 3).map((card, idx) => (
-          <TechCard key={card.id} card={card} idx={idx} />
-        ))}
-      </div>
-
-      {/* Row 2: 2 cards centered */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[800px] mx-auto">
-        {techCards.slice(3).map((card, idx) => (
-          <TechCard key={card.id} card={card} idx={idx + 3} />
+      <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 w-full">
+        {techCards.map((card, idx) => (
+          <div 
+            key={card.id} 
+            className={`w-full lg:col-span-2 ${idx === 3 ? "lg:col-start-2" : ""}`}
+          >
+            <TechCard card={card} idx={idx} />
+          </div>
         ))}
       </div>
     </section>

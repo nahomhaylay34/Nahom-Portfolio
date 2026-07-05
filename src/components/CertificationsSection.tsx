@@ -45,7 +45,7 @@ export default function CertificationsSection() {
   };
 
   return (
-    <section id="certifications" className="px-6 md:px-16 py-24 max-w-[1280px] mx-auto z-10">
+    <section id="certifications" className="px-6 md:px-16 py-24 w-full max-w-none mx-auto z-10">
       {/* Header */}
       <div className="mb-16 select-none">
         <span className="font-mono text-[10px] text-secondary uppercase tracking-[0.2em] mb-3 block font-bold">
@@ -57,47 +57,52 @@ export default function CertificationsSection() {
       </div>
 
       {/* Grid of 3D Flip Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto w-full">
-        {certificationsData.map((cert) => (
-          <div key={cert.id} className="flip-card perspective-1000 h-80 w-full group cursor-pointer">
-            <div className="flip-card-inner relative w-full h-full text-center">
-              
-              {/* Card Front */}
-              <div className="flip-card-front absolute inset-0 glass-card rounded-2xl p-6 flex flex-col items-center justify-center scan-effect bg-surface-container-lowest/10">
-                <div className="mb-5 p-4 rounded-xl bg-primary/5 border border-primary/10 group-hover:scale-110 group-hover:border-primary/30 transition-all duration-300">
-                  {getIcon(cert.id)}
-                </div>
-                <h4 className="font-headline text-base md:text-lg text-primary font-bold tracking-tight">
-                  {cert.title}
-                </h4>
-                <p className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase mt-3 font-semibold">
-                  {cert.issuer}
-                </p>
-              </div>
-
-              {/* Card Back */}
-              <div className="flip-card-back absolute inset-0 glass-card rounded-2xl p-6 flex flex-col justify-between items-start bg-primary/[0.03] border-primary/20">
-                <div className="text-left w-full select-text">
-                  <span className="font-mono text-[10px] text-primary mb-3 block font-bold">
-                    ID: {cert.certId}
-                  </span>
-                  <p className="font-mono text-[11px] text-on-surface-variant leading-relaxed">
-                    {cert.description}
+      <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 w-full max-w-none mx-auto">
+        {certificationsData.map((cert, idx) => (
+          <div 
+            key={cert.id} 
+            className={`w-full lg:col-span-2 ${idx % 2 === 0 ? "lg:col-start-2" : ""}`}
+          >
+            <div className="flip-card perspective-1000 h-80 w-full group cursor-pointer">
+              <div className="flip-card-inner relative w-full h-full text-center">
+                
+                {/* Card Front */}
+                <div className="flip-card-front absolute inset-0 glass-card rounded-2xl p-6 flex flex-col items-center justify-center scan-effect bg-surface-container-lowest/10">
+                  <div className="mb-5 p-4 rounded-xl bg-primary/5 border border-primary/10 group-hover:scale-110 group-hover:border-primary/30 transition-all duration-300">
+                    {getIcon(cert.id)}
+                  </div>
+                  <h4 className="font-headline text-base md:text-lg text-primary font-bold tracking-tight">
+                    {cert.title}
+                  </h4>
+                  <p className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase mt-3 font-semibold">
+                    {cert.issuer}
                   </p>
                 </div>
-                
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleVerify(cert.title, cert.certId);
-                  }}
-                  className="w-full py-2.5 bg-primary/10 border border-primary/30 rounded-lg font-mono text-[10px] text-primary font-bold hover:bg-primary/20 hover:border-primary/50 transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  <Key className="w-3.5 h-3.5" />
-                  <span>VERIFY_KEY</span>
-                </button>
-              </div>
 
+                {/* Card Back */}
+                <div className="flip-card-back absolute inset-0 glass-card rounded-2xl p-6 flex flex-col justify-between items-start bg-primary/[0.03] border-primary/20">
+                  <div className="text-left w-full select-text">
+                    <span className="font-mono text-[10px] text-primary mb-3 block font-bold">
+                      ID: {cert.certId}
+                    </span>
+                    <p className="font-mono text-[11px] text-on-surface-variant leading-relaxed">
+                      {cert.description}
+                    </p>
+                  </div>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleVerify(cert.title, cert.certId);
+                    }}
+                    className="w-full py-2.5 bg-primary/10 border border-primary/30 rounded-lg font-mono text-[10px] text-primary font-bold hover:bg-primary/20 hover:border-primary/50 transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <Key className="w-3.5 h-3.5" />
+                    <span>VERIFY_KEY</span>
+                  </button>
+                </div>
+
+              </div>
             </div>
           </div>
         ))}

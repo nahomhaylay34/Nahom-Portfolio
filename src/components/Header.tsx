@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Terminal as TerminalIcon, Cpu, Menu, X } from "lucide-react";
+import { Terminal as TerminalIcon, Cpu, Menu, X, Sun, Moon, Info } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface HeaderProps {
@@ -9,6 +9,19 @@ interface HeaderProps {
 export default function Header({ onOpenTerminal }: HeaderProps) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    // Check initial preference
+    if (document.documentElement.classList.contains('light')) {
+      setIsLightMode(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsLightMode(!isLightMode);
+    document.documentElement.classList.toggle('light');
+  };
 
   const navLinks = [
     { id: "home", label: "Home" },
@@ -81,14 +94,23 @@ export default function Header({ onOpenTerminal }: HeaderProps) {
 
         {/* Action Button & Menu Buttons */}
         <div className="flex items-center gap-3">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 text-on-surface-variant hover:text-primary hover:bg-white/5 rounded-lg transition-all"
+            title="Toggle Theme"
+          >
+            {isLightMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+
           {/* Console Terminal Launcher */}
           <button
             onClick={onOpenTerminal}
             className="flex items-center gap-1.5 px-3.5 py-1.5 bg-primary/10 border border-primary/20 hover:bg-primary/20 hover:border-primary/40 rounded-lg text-primary text-xs font-mono font-bold transition-all hover:scale-[1.05] active:scale-[0.95]"
-            title="Open Console Terminal (C_SHELL)"
+            title="More Info"
           >
-            <TerminalIcon className="w-4 h-4" />
-            <span className="hidden sm:inline">C_SHELL</span>
+            <Info className="w-4 h-4" />
+            <span className="hidden sm:inline">More Info</span>
           </button>
 
           {/* Mobile Menu Toggle */}
